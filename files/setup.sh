@@ -1,26 +1,26 @@
 #!/bin/bash
 
-set -x 
+set -x
 
-mkdir /etc/apache2/ssl 
-/usr/sbin/make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/ssl/apache.pem 
+mkdir /etc/apache2/ssl
+/usr/sbin/make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/ssl/apache.pem
 /usr/sbin/a2ensite default-ssl
 
 mv /home/files/php.conf /etc/apache2/conf-available/php.conf
-mv /home/files/apache2.conf /etc/apache2/apache2.conf 
+mv /home/files/apache2.conf /etc/apache2/apache2.conf
 rm -v /etc/apache2/mods-enabled/fcgid.conf
-mv /home/files/fcgid.conf /etc/apache2/mods-enabled/fcgid.conf 
-mv /home/files/mod_deflate.conf /etc/apache2/conf-available/mod_deflate.conf  
-mv /home/files/apache_https.conf /etc/apache2/sites-available/default-ssl.conf 
-mv /home/files/apache.conf /etc/apache2/sites-available/000-default.conf 
-mv /home/files/index.html /var/www/index.html     
+mv /home/files/fcgid.conf /etc/apache2/mods-enabled/fcgid.conf
+mv /home/files/mod_deflate.conf /etc/apache2/conf-available/mod_deflate.conf
+mv /home/files/apache_https.conf /etc/apache2/sites-available/default-ssl.conf
+mv /home/files/apache.conf /etc/apache2/sites-available/000-default.conf
+mv /home/files/index.html /var/www/index.html
 mv /home/files/start.sh /start.sh
-chmod 0755 /start.sh     
-    
+chmod 0755 /start.sh
+
 # unzip lizmap master
-unzip /var/www/$LIZMAPVERSION.zip -d /var/www/
-mv /var/www/lizmap-web-client-$LIZMAPVERSION/ /var/www/websig/
-rm /var/www/$LIZMAPVERSION.zip
+# unzip /var/www/$LIZMAPVERSION.zip -d /var/www/
+mv /var/www/lizmap-web-client /var/www/websig/
+# rm /var/www/$LIZMAPVERSION.zip
 # Set rights & active config
 chmod +x /var/www/websig/lizmap/install/set_rights.sh
 /var/www/websig/lizmap/install/set_rights.sh www-data www-data

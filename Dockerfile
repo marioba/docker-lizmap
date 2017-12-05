@@ -16,7 +16,9 @@ ENV LIZMAPVERSION trailnet
 
 COPY files/ /home/files/
 
-ADD https://github.com/marioba/lizmap-web-client/archive/$LIZMAPVERSION.zip /var/www/
+COPY lizmap-web-client-copy /var/www/lizmap-web-client
+
+#ADD https://github.com/marioba/lizmap-web-client/archive/$LIZMAPVERSION.zip /var/www/
 RUN /home/files/setup.sh
 
 VOLUME  ["/var/www/websig/lizmap/var" , "/home"]
